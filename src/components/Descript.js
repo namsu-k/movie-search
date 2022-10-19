@@ -5,7 +5,7 @@ function Descript({ coverImg, id, title, rating, year, genres, summary }) {
   return (
     <div>
       <h1>
-        <Link to={`${process.env.PUBLIC_URL}/`}>HOME</Link>
+        <Link to="..">HOME</Link>
       </h1>
       <img src={coverImg} alt={title}></img>
       <p>ID : {id}</p>
