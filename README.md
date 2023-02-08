@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Movie search v2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> ## 의의
 
-## Available Scripts
+    - 이 프로젝트는 바닐라JS 강의를 보고 따라서 만들었다
+    - 이 프로젝트를 만든 후 여러 강의를 보고 배웠다
+    - 배운 것을 이 프로젝트에 적용시켜보려는 목적이 있고 잘 활용할 수 있는지 점검하는 데 의의를 둔다
 
-In the project directory, you can run:
+> ## 용도
 
-### `npm start`
+    - 영화 리스트 api를 이용해서 원하는 조건에 맞는 영화들을 찾아볼 수 있다
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> ## api
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    - api doc : https://yts.mx/api
+        - List Movies
+        - Movie Details
 
-### `npm test`
+    - 공통적으로 반환되는 값
+        - get => {status, status_message, data}
+        - status : api 호출에 대한 상태값 "ok" 또는 "error"
+        - status_message : status에 해당하는 메시지
+        - data : status가 "ok"일 경우 data가 포함된다
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    - List Moives
+        - url : https://yts.mx/api/v2/list_movies.json
+        - 주요 parameters
+            - limit : 몇 개의 영화 데이터를 가져올 것인지에 대한 파라미터
+                - 1에서 50까지의 정수 사용 (기본값 20)
+            - page : 설정한 페이지의 데이터를 가져올 수 있는 파라미터
+                - 정수 (기본값 1)
+            - minimum_rating : 영화 평점을 이용한 필터링을 위한 파라미터
+                - 0에서 9까지의 정수 사용 (기본값 0)
+            - query_term : 영화 제목, 배우 이름, 감독 이름을 이용해서 검색하기 위한 파라미터
+            - genre : 장르를 이용해서 검색하기 위한 파라미터
+            - sort_by : 영화 데이터를 어떻게 정렬할 것인지 설정할 수 있는 파라미터
+                - title, year, rating, peers, seeds, download_count, like_count, date_added
 
-### `npm run build`
+    - Movie Details
+        - url : https://yts.mx/api/v2/movie_detail.json
+        - parameters
+            - movie_id (imdb_id) : 영화 ID 번호 파라미터 (필수값)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> ## 기능
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    - 필터링과 검색
+        1. 기본적으로 limit와 page 기능 위에 필터링과 검색을 구현해야한다
+        2. 평점과 장르 파라미터는 필터링으로 구분한다
+        3. 정렬 기능을 사용하기 위해선 나머지 파라미터들을 저장하고 있어야한다
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    - 기존 코드 대체
+        1. v1
+            - javascript
+            - react
+            - react-router-dom v5
 
-### `npm run eject`
+        2. v2
+            - typescript
+            - react
+            - chakra UI
+            - react-icon
+            - react-router-dom v6
+            - tanstack query
+            - axios
+            - react-hook-form
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> ## UI
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    - 메인
+        - 헤더
+            - 메뉴
+                1. 전체 영화 리스트 (기본)
+                2. 최신순
+                3. 평점 높은 순
+            - 메인 로고
+        - 본문
+            1. 검색
+            2. 결과
+    - 디테일
+        1. 헤더
+        2. 본문
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+> ## 기록
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    - 2023. 2. 8. 수
+        1. 타입스크립트 적용하기
