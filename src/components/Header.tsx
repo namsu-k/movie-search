@@ -28,8 +28,12 @@ export default function Header() {
               <MenuItem icon={<SlHome />}>Home</MenuItem>
             </Link>
             <MenuDivider />
-            <MenuItem icon={<SlArrowRightCircle />}>recent</MenuItem>
-            <MenuItem icon={<SlArrowRightCircle />}>rating</MenuItem>
+            <MenuItem disabled icon={<SlArrowRightCircle />}>
+              recent
+            </MenuItem>
+            <MenuItem disabled icon={<SlArrowRightCircle />}>
+              rating
+            </MenuItem>
           </MenuList>
         </Menu>
       </Flex>

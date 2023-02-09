@@ -34,7 +34,7 @@
             - query_term : 영화 제목, 배우 이름, 감독 이름을 이용해서 검색하기 위한 파라미터
             - genre : 장르를 이용해서 검색하기 위한 파라미터
             - sort_by : 영화 데이터를 어떻게 정렬할 것인지 설정할 수 있는 파라미터
-                - title, year, rating, peers, seeds, download_count, like_count, date_added
+                - title, year, rating
 
     - Movie Details
         - url : https://yts.mx/api/v2/movie_detail.json
@@ -73,9 +73,12 @@
                 2. 최신순
                 3. 평점 높은 순
             - 메인 로고
+            - 다크 모드 버튼
         - 본문
-            1. 검색
-            2. 결과
+            - 로딩
+                1. 검색
+            - 로딩 완료
+                1. 결과
     - 디테일
         1. 헤더
         2. 본문
@@ -84,3 +87,13 @@
 
     - 2023. 2. 8. 수
         1. 타입스크립트 적용하기
+            - https://blog.naver.com/nghokr1111/223009649209
+        2. router 생성하기
+        3. Header component
+    - 2023. 2. 9. 목
+        1. tanstack/react-query
+            - useQuery
+        2. api data types
+            - types.d.ts
+        3. Loading component
+        4. SearchBar component
