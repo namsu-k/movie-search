@@ -89,11 +89,14 @@
         1. 타입스크립트 적용하기
             - https://blog.naver.com/nghokr1111/223009649209
         2. router 생성하기
-        3. Header component
+            - https://blog.naver.com/nghokr1111/223010874806
+        3. Header Component
     - 2023. 2. 9. 목
         1. tanstack/react-query
             - useQuery
         2. api data types
             - types.d.ts
-        3. Loading component
-        4. SearchBar component
+        3. Loading Component
+        4. SearchBar Component
+    - 2023. 2. 10. 금
+        1. Detail Component

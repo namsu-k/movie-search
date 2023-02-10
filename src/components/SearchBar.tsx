@@ -10,12 +10,11 @@ import { FaSearch } from "react-icons/fa";
 
 export default function SearchBar() {
   return (
-    <Box w="100%" h="10%" mt={2} mb={8}>
+    <Box>
       <Flex
+        mt={2}
         bgColor={"rgba(0,0,0,0.3)"}
-        borderRadius={20}
-        w="100%"
-        h="100%"
+        borderRadius={10}
         justifyContent={"center"}
         alignItems="center"
       >

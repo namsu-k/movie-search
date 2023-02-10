@@ -4,7 +4,7 @@ import Header from "./Header";
 
 export default function Root() {
   return (
-    <Box mx={8} mt={2} h="98vh">
+    <Box h="100vh" w="98vw" mx={"auto"} mt={"auto"}>
       <Header />
       <Outlet />
     </Box>

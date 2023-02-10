@@ -62,7 +62,7 @@ export default function Movie({
   medium_cover_image,
   background_image_original,
 }: IMovies) {
-  const TextColor = useColorModeValue("white", "white");
+  const TextColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.800");
   return (
     <GridItem
       bgImg={background_image_original}
@@ -71,9 +71,8 @@ export default function Movie({
       bgRepeat="no-repeat"
       borderColor={"blackAlpha.100"}
       borderRadius={20}
-      borderStyle={"groove"}
-      w="340px"
-      h="640px"
+      w="100%"
+      h="100%"
     >
       <VStack
         m={4}
@@ -84,7 +83,7 @@ export default function Movie({
           w: "100%",
           h: "100%",
           m: 0,
-          color: TextColor,
+          color: "white",
         }}
       >
         <Image
@@ -94,8 +93,8 @@ export default function Movie({
           borderRadius={20}
           src={medium_cover_image}
         />
-        <VStack w="100%">
-          <Heading noOfLines={2} textAlign={"center"}>
+        <VStack w="100%" color={TextColor}>
+          <Heading noOfLines={1} textAlign={"center"}>
             {title}
           </Heading>
           <HStack w="100%" justifyContent={"space-evenly"}>
@@ -103,10 +102,10 @@ export default function Movie({
               <Text>{g}</Text>
             ))}
 
-            <Text>
+            <HStack>
               <FaStar />
-              {rating}
-            </Text>
+              <Text>{rating}</Text>
+            </HStack>
           </HStack>
         </VStack>
       </VStack>
