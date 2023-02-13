@@ -1,15 +1,19 @@
 import {
+  Avatar,
   Badge,
   Box,
   Button,
   Flex,
   Heading,
+  HStack,
   Image,
   Stack,
   Text,
   Tooltip,
+  VStack,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
+import { FaLink } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { getMovieDetail } from "../api";
 import Loading from "../components/Loading";
@@ -23,69 +27,133 @@ export default function Detail() {
   );
   return (
     <>
-      {isLoading ? <Loading /> : null}
-
-      <Flex
-        mx={"auto"}
-        w={{ "2xl": "80%" }}
-        bgImage={data?.data.movie.background_image_original}
-        bgRepeat="no-repeat"
-        bgPos={"center"}
-        bgSize={"cover"}
-        direction={{ base: "column", md: "row" }}
-        // variant="outline"
-        overflow="hidden"
-        maxH={"90vh"}
-      >
-        <Stack w={{ md: "50%" }} maxH="100%" justifyContent={"center"}>
-          <Image
-            borderRadius={10}
-            maxW="100%"
-            maxH="100%"
-            overflow={"hidden"}
-            objectFit={"cover"}
-            src={data?.data.movie.large_cover_image}
-          ></Image>
-        </Stack>
-        <Stack
-          justifyContent="center"
-          alignItems="center"
-          w={{ base: "90%", md: "50%" }}
+      {isLoading ? (
+        <VStack justifyContent={"center"} h="100vh">
+          <Loading />
+        </VStack>
+      ) : (
+        <Box
+          w="100%"
+          h="100%"
+          bgImage={data?.data.movie.background_image_original}
+          bgRepeat="no-repeat"
+          bgPos={"center"}
+          bgSize={"cover"}
+          overflow="hidden"
         >
-          <Heading>{data?.data.movie.title}</Heading>
-          <Box>
-            <Text noOfLines={5}>{data?.data.movie.description_intro}</Text>
-            <Tooltip
-              label={data?.data.movie.description_full}
-              placement="right-start"
-              fontSize={"lg"}
-            >
-              <Button colorScheme={"yellow"}>Description</Button>
-            </Tooltip>
-          </Box>
-          <Text fontSize={"xl"}>
-            Genres :{" "}
-            {data?.data.movie.genres.map((g) => (
-              <Badge colorScheme="orange">{g}</Badge>
-            ))}
-          </Text>
-          <Text fontSize={"xl"}>
-            Language :{" "}
-            <Badge colorScheme={"cyan"}>{data?.data.movie.language}</Badge>
-          </Text>
-          <Text fontSize={"xl"}>
-            Rating :{" "}
-            <Badge colorScheme={"green"}>{data?.data.movie.rating}</Badge>
-          </Text>
-          <Text fontSize={"xl"}>
-            Runtime :{" "}
-            <Badge colorScheme={"pink"}>{data?.data.movie.runtime} min.</Badge>
-          </Text>
-          <Text fontSize={"xl"}>
-            Year : <Badge colorScheme={"red"}>{data?.data.movie.year}</Badge>
-          </Text>
-        </Stack>
-      </Flex>
+          <Stack
+            bgColor={"rgba(0,0,0,0.8)"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Image
+              borderRadius={10}
+              overflow={"hidden"}
+              objectFit={"cover"}
+              src={data?.data.movie.large_cover_image}
+            ></Image>
+          </Stack>
+          <Stack
+            bgColor={"rgba(0,0,0,0.8)"}
+            justifyContent="center"
+            alignItems="center"
+            fontSize="xl"
+            pb={4}
+          >
+            <Flex w="70%" justifyContent={"center"} textAlign="center">
+              <Heading>{data?.data.movie.title}</Heading>
+            </Flex>
+            <Flex direction={"column"} alignItems="center">
+              <Tooltip
+                label={data?.data.movie.description_full}
+                placement="top"
+                fontSize={"md"}
+              >
+                <Button colorScheme={"linkedin"}>Description</Button>
+              </Tooltip>
+            </Flex>
+            {data?.data.movie.cast
+              ? data?.data.movie.cast.map((cast) => (
+                  <HStack>
+                    <Avatar name={cast.name} src={cast.url_small_image} />
+                    <VStack spacing={-1}>
+                      <Text>{cast.name}</Text>
+                      <Button
+                        as={"a"}
+                        variant="link"
+                        href={`https://imdb.com/name/nm${cast.imdb_code}/`}
+                        target="_blank"
+                        colorScheme={"yellow"}
+                      >
+                        <FaLink /> Link (imdb.com)
+                      </Button>
+                    </VStack>
+                  </HStack>
+                ))
+              : null}
+            <Text>
+              Genres :{" "}
+              {data?.data.movie.genres.map((g) => (
+                <Badge
+                  mx={1}
+                  colorScheme="blue"
+                  fontSize={14}
+                  variant={"outline"}
+                >
+                  {g}
+                </Badge>
+              ))}
+            </Text>
+            <Text>
+              Language :{" "}
+              <Badge colorScheme={"green"} fontSize={14} variant={"outline"}>
+                {data?.data.movie.language}
+              </Badge>
+            </Text>
+            <Text>
+              Rating :{" "}
+              <Badge colorScheme={"purple"} fontSize={14} variant={"outline"}>
+                {data?.data.movie.rating}
+              </Badge>
+            </Text>
+            <Text>
+              Runtime :{" "}
+              <Badge colorScheme={"pink"} fontSize={14} variant={"outline"}>
+                {data?.data.movie.runtime === 0
+                  ? "-"
+                  : `${data?.data.movie.runtime} min.`}
+              </Badge>
+            </Text>
+            <Text>
+              Year :{" "}
+              <Badge colorScheme={"red"} fontSize={14} variant={"outline"}>
+                {data?.data.movie.year}
+              </Badge>
+            </Text>
+            <HStack>
+              <Text>Detail Link :</Text>
+              <Button
+                as="a"
+                href={`https://imdb.com/title/${data?.data.movie.imdb_code}`}
+                target={"_blank"}
+                variant="link"
+                colorScheme={"yellow"}
+              >
+                <FaLink /> Link (imdb.com)
+              </Button>
+              <Button
+                as="a"
+                href={data?.data.movie.url}
+                target={"_blank"}
+                variant="link"
+                colorScheme={"green"}
+              >
+                <FaLink /> Link (yts.mx)
+              </Button>
+            </HStack>
+          </Stack>
+        </Box>
+      )}
     </>
   );
 }

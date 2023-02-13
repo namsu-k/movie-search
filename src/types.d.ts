@@ -75,6 +75,7 @@ export interface IDetailMovieData {
 export interface IDetailMovie {
   background_image: string;
   background_image_original: string;
+  cast: ICast[];
   date_uploaded: string;
   date_uploaded_unix: number;
   description_full: string;
@@ -102,4 +103,11 @@ export interface IDetailMovie {
   url: string;
   year: number;
   yt_trailer_code: string;
+}
+
+export interface ICast {
+  name: string;
+  character_name: string;
+  imdb_code: string;
+  url_small_image?: string;
 }

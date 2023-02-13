@@ -1,17 +1,6 @@
-// import {
-//   Heading,
-//   HStack,
-//   Img,
-//   ListItem,
-//   Stack,
-//   Text,
-//   UnorderedList,
-//   VStack,
-// } from "@chakra-ui/react";
-// import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
-
 import {
+  Badge,
+  Box,
   GridItem,
   Heading,
   HStack,
@@ -23,43 +12,12 @@ import {
 import { FaStar } from "react-icons/fa";
 import { IMovies } from "../types";
 
-// function Movie({ id, coverImg, title, summary, rating, genres }) {
-//   return (
-//     <Stack borderWidth={1} w="60%">
-//       <HStack>
-//         <Img src={coverImg} alt={title} />
-//         <VStack w="40%">
-//           <Heading>
-//             <Link to={`/movie/${id}`}>{title}</Link>
-//           </Heading>
-//           <Text noOfLines={3}>{summary}</Text>
-//           <Text>Rating : {rating}</Text>
-//           <UnorderedList>
-//             {genres.map((g) => (
-//               <ListItem key={g}>{g}</ListItem>
-//             ))}
-//           </UnorderedList>
-//         </VStack>
-//       </HStack>
-//     </Stack>
-//   );
-// }
-
-// Movie.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   coverImg: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   summary: PropTypes.string.isRequired,
-//   rating: PropTypes.string.isRequired,
-//   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-// };
-// export default Movie;
-
 export default function Movie({
   title,
   genres,
   rating,
   medium_cover_image,
+  large_cover_image,
   background_image_original,
 }: IMovies) {
   const TextColor = useColorModeValue("whiteAlpha.800", "whiteAlpha.800");
@@ -69,45 +27,44 @@ export default function Movie({
       bgPos="center"
       bgSize="cover"
       bgRepeat="no-repeat"
-      borderColor={"blackAlpha.100"}
-      borderRadius={20}
-      w="100%"
-      h="100%"
+      borderRadius={10}
     >
       <VStack
-        m={4}
+        color={TextColor}
         _hover={{
           content: `""`,
           bgColor: "blackAlpha.800",
-          borderRadius: 20,
-          w: "100%",
-          h: "100%",
-          m: 0,
+          borderColor: "rgba(0,0,0,0)",
+          borderRadius: 10,
+          borderWidth: 10,
           color: "white",
         }}
       >
         <Image
           overflow={"hidden"}
           objectFit={"cover"}
-          w="100%"
-          borderRadius={20}
-          src={medium_cover_image}
+          borderRadius={10}
+          src={large_cover_image}
+          maxH="100%"
         />
-        <VStack w="100%" color={TextColor}>
-          <Heading noOfLines={1} textAlign={"center"}>
-            {title}
-          </Heading>
-          <HStack w="100%" justifyContent={"space-evenly"}>
-            {genres.map((g) => (
-              <Text>{g}</Text>
-            ))}
+        <Heading noOfLines={1} textAlign={"center"}>
+          {title}
+        </Heading>
 
-            <HStack>
+        <HStack pb={4}>
+          {genres.map((g) => (
+            <Badge colorScheme="blue" fontSize={"8"} variant={"outline"}>
+              {g}
+            </Badge>
+          ))}
+
+          <HStack spacing={0}>
+            <Box color={"yellow"}>
               <FaStar />
-              <Text>{rating}</Text>
-            </HStack>
+            </Box>
+            <Text>{rating}</Text>
           </HStack>
-        </VStack>
+        </HStack>
       </VStack>
     </GridItem>
   );

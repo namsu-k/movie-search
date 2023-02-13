@@ -40,13 +40,12 @@
         - url : https://yts.mx/api/v2/movie_detail.json
         - parameters
             - movie_id (imdb_id) : 영화 ID 번호 파라미터 (필수값)
+            - with_images
+            - with_cast
 
 > ## 기능
 
     - 필터링과 검색
-        1. 기본적으로 limit와 page 기능 위에 필터링과 검색을 구현해야한다
-        2. 평점과 장르 파라미터는 필터링으로 구분한다
-        3. 정렬 기능을 사용하기 위해선 나머지 파라미터들을 저장하고 있어야한다
 
     - 기존 코드 대체
         1. v1

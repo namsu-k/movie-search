@@ -1,4 +1,4 @@
-import { Box, Grid } from "@chakra-ui/react";
+import { Grid, VStack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { getMovies } from "../api";
@@ -10,11 +10,12 @@ export default function Home() {
   const { isLoading, data } = useQuery<IData>(["movies"], getMovies);
   return (
     <>
-      {isLoading ? <Loading /> : null}
+      {isLoading ? (
+        <VStack justifyContent={"center"} h="100vh">
+          <Loading />
+        </VStack>
+      ) : null}
       <Grid
-        justifyContent="center"
-        justifyItems="center"
-        my={2}
         gap={4}
         templateColumns={{
           base: "1fr",
@@ -26,39 +27,37 @@ export default function Home() {
         }}
       >
         {data?.data.movies.map((movie) => (
-          <Box w="90%">
-            <Link to={`movie/${movie.id}`}>
-              <Movie
-                key={movie.id}
-                title={movie.title}
-                background_image={""}
-                background_image_original={movie.background_image_original}
-                date_uploaded={""}
-                date_uploaded_unix={0}
-                description_full={""}
-                genres={movie.genres}
-                id={movie.id}
-                imdb_code={""}
-                language={""}
-                large_cover_image={""}
-                medium_cover_image={movie.medium_cover_image}
-                mpa_rating={""}
-                rating={movie.rating}
-                runtime={0}
-                slug={""}
-                small_cover_image={""}
-                state={""}
-                summary={""}
-                synopsis={""}
-                title_english={""}
-                title_long={""}
-                torrents={[]}
-                url={""}
-                year={0}
-                yt_trailer_code={""}
-              />
-            </Link>
-          </Box>
+          <Link to={`movie/${movie.id}`}>
+            <Movie
+              key={movie.id}
+              title={movie.title}
+              background_image={""}
+              background_image_original={movie.background_image_original}
+              date_uploaded={""}
+              date_uploaded_unix={0}
+              description_full={""}
+              genres={movie.genres}
+              id={movie.id}
+              imdb_code={""}
+              language={""}
+              large_cover_image={movie.large_cover_image}
+              medium_cover_image={movie.medium_cover_image}
+              mpa_rating={""}
+              rating={movie.rating}
+              runtime={0}
+              slug={""}
+              small_cover_image={""}
+              state={""}
+              summary={""}
+              synopsis={""}
+              title_english={""}
+              title_long={""}
+              torrents={[]}
+              url={""}
+              year={0}
+              yt_trailer_code={""}
+            />
+          </Link>
         ))}
       </Grid>
     </>
