@@ -10,10 +10,6 @@ const instance = axios.create({
 export const getMovies = () =>
   instance.get("").then((response) => response.data);
 
-// export const getMovies = ({ pageParam }: QueryFunctionContext) => {
-//   return instance.get(`?page=${pageParam}`).then((response) => response.data);
-// };
-
 export const getMovieDetail = ({ queryKey }: QueryFunctionContext) => {
   const [_, movieId] = queryKey;
   return instance

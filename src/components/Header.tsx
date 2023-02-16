@@ -20,13 +20,13 @@ export default function Header() {
   const ColorIcon = useColorModeValue(FaSun, FaMoon);
   return (
     <VStack>
-      <HStack w="50%" justifyContent={"space-between"}>
+      <HStack w={{ sm: "50%" }} justifyContent={"space-between"}>
         <Menu>
           <MenuButton as={IconButton} aria-label="Menu" icon={<SlMenu />} />
           <MenuList>
-            <MenuItem icon={<SlHome />}>
-              <Link to={"/"}>Home</Link>
-            </MenuItem>
+            <Link to={"/"}>
+              <MenuItem icon={<SlHome />}>Home</MenuItem>
+            </Link>
           </MenuList>
         </Menu>
 

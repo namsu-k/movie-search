@@ -7,9 +7,15 @@ import {
   Heading,
   HStack,
   Image,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Stack,
   Text,
-  Tooltip,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
@@ -25,6 +31,7 @@ export default function Detail() {
     ["movie", movieId],
     getMovieDetail
   );
+  const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <>
       {isLoading ? (
@@ -64,14 +71,20 @@ export default function Detail() {
               <Heading>{data?.data.movie.title}</Heading>
             </Flex>
             <Flex direction={"column"} alignItems="center">
-              <Tooltip
-                label={data?.data.movie.description_full}
-                placement="top"
-                fontSize={"md"}
-              >
-                <Button colorScheme={"linkedin"}>Description</Button>
-              </Tooltip>
+              <Button colorScheme={"linkedin"} onClick={onOpen}>
+                Description
+              </Button>
             </Flex>
+            <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>
+                  Description
+                  <ModalCloseButton />
+                </ModalHeader>
+                <ModalBody>{data?.data.movie.description_full}</ModalBody>
+              </ModalContent>
+            </Modal>
             {data?.data.movie.cast
               ? data?.data.movie.cast.map((cast) => (
                   <HStack>
