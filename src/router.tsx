@@ -6,7 +6,7 @@ import NotFound from "./routes/NotFound";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/movie-search/",
     element: <Root />,
     errorElement: <NotFound />,
     children: [

@@ -24,7 +24,7 @@ export default function Header() {
         <Menu>
           <MenuButton as={IconButton} aria-label="Menu" icon={<SlMenu />} />
           <MenuList>
-            <Link to={"/"}>
+            <Link to={"/movie-search"}>
               <MenuItem icon={<SlHome />}>Home</MenuItem>
             </Link>
           </MenuList>
