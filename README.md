@@ -1,4 +1,4 @@
-# Movie search v2
+<!-- # Movie search v2
 
 > ## 의의
 
@@ -99,3 +99,4 @@
         4. SearchBar Component
     - 2023. 2. 10. 금
         1. Detail Component
+-->
